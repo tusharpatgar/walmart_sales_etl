@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+
+# Spark / Databricks
+.metastore_db/
+spark-warehouse/
+
+# Data files
+*.csv
+data/
+
+# OS
+.DS_Store
+Thumbs.db
