@@ -1,121 +1,62 @@
-🛒 Walmart Sales Data Engineering Pipeline (End-to-End ETL)
-🔍 Overview
+# Walmart Sales Analytics — PySpark Notebook
 
-This project implements a production-style batch ETL pipeline for Walmart sales data using PySpark and Databricks, following the Medallion (Bronze–Silver–Gold) architecture.
-The pipeline ingests raw sales data, applies data quality checks and transformations, and produces analytics-ready datasets for business reporting.
+A notebook-based data transformation exercise using PySpark and Databricks. It cleans weekly Walmart sales records, derives calendar attributes, and calculates store-level sales aggregations.
 
-🎯 Business Problem
+## Project contents
 
-Retail organizations need reliable, scalable, and cost-efficient pipelines to analyze sales performance across stores, products, and time periods.
+```text
+Notebooks/
+  ETL PROCESS.ipynb
+datasets/
+  Walmart_Sales.csv
+readme.md
+```
 
-Challenges addressed:
+## Technology
 
-Large-volume data processing
+- Python
+- Apache Spark / PySpark
+- Databricks notebooks
+- Spark DataFrames and SQL tables
 
-Data quality and consistency
+## Notebook workflow
 
-Incremental processing
+The notebook demonstrates:
 
-Analytics-ready outputs for BI teams
+1. Defining a Spark schema for sales records.
+2. Loading a source table into a Spark DataFrame.
+3. Selecting and casting fields.
+4. Filtering invalid or incomplete sales records.
+5. Deriving year, month, week, and holiday indicators.
+6. Writing a cleaned table.
+7. Aggregating weekly sales by store and calendar period.
 
-🧠 Solution Approach
+## Data
 
-Designed a layered ETL architecture (Bronze → Silver → Gold)
+The repository includes `datasets/Walmart_Sales.csv`. The notebook currently reads a Databricks table named `walmart_sales` and later references a workspace table. Configure the required table(s) in your Databricks workspace before running the notebook, or update the notebook to read the repository CSV directly.
 
-Implemented incremental processing using Spark optimizations
+## Run the notebook
 
-Applied data validation rules to ensure correctness
+1. Import this repository into a Databricks workspace or open the notebook in a compatible notebook environment.
+2. Ensure the source data is available as the `walmart_sales` table.
+3. Review the catalog/schema references and update them for your workspace.
+4. Run `Notebooks/ETL PROCESS.ipynb` from top to bottom.
 
-Optimized Spark jobs for performance and cost
+This repository does not currently provide a local Spark application entry point or a fully automated deployment pipeline.
 
-🏗 Architecture
-Source Data
-   │
-   ▼
-Bronze Layer (Raw Ingestion)
-   │  - Schema enforcement
-   │  - Raw data storage
-   ▼
-Silver Layer (Cleaned & Enriched)
-   │  - Null handling
-   │  - Type casting
-   │  - Business rules
-   ▼
-Gold Layer (Analytics Ready)
-   - Aggregated sales metrics
-   - KPIs for reporting
+## Important implementation notes
 
-🛠 Tech Stack
+- The notebook writes tables using overwrite mode. Confirm the target table and workspace before rerunning it.
+- Validate the declared schema against the source CSV columns before using the CSV as the table source.
+- The current notebook is an educational transformation workflow. Do not describe it as an incremental, idempotent production pipeline without implementing and testing those behaviors.
 
-Language: Python
+## Possible next improvements
 
-Processing: PySpark
+- Read the committed CSV directly instead of relying on a pre-created source table.
+- Parameterize catalog, schema, and table names.
+- Add schema and data-quality assertions.
+- Add reproducible run instructions and sample outputs.
 
-Platform: Databricks
+## License
 
-Storage: Delta Lake
-
-Architecture: Medallion (Bronze–Silver–Gold)
-
-🚀 Pipeline Features
-
-Batch ETL with scalable Spark jobs
-
-Schema validation & null checks
-
-Repartitioning and caching for performance
-
-Idempotent transformations
-
-Analytics-ready fact tables
-
-📊 Example KPIs Produced
-
-Total sales per store
-
-Weekly & monthly revenue trends
-
-Product-level performance
-
-Store-wise contribution to revenue
-
-⚡ Performance Optimization
-
-Optimized joins using broadcast hints
-
-Reduced shuffles via proper partitioning
-
-Cached intermediate datasets
-
-Used column pruning & predicate pushdown
-
-🧪 Data Quality Checks
-
-Schema validation
-
-Null & duplicate detection
-
-Row count reconciliation between layers
-
-📈 Results
-
-Processed large-scale sales data efficiently
-
-Reduced transformation runtime through Spark tuning
-
-Delivered clean, analytics-ready datasets for BI consumption
-
-🔮 Future Improvements
-
-Airflow orchestration
-
-Incremental loads using Delta Lake MERGE
-
-Automated data quality alerts
-
-BI dashboard integration
-
-👤 Author
-
-Tushar Patgar
-Data Engineer | PySpark | Databricks | AWS
+No license is currently specified. Contact the repository owner before reusing the contents.
