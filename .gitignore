@@ -1,15 +1,27 @@
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
+.venv/
+venv/
+.env
 
-# Spark / Databricks
+# Jupyter
+.ipynb_checkpoints/
+
+# Spark / Databricks generated state
 .metastore_db/
 spark-warehouse/
+derby.log
+checkpoint/
+checkpoints/
+outputs/
+output/
 
-# Data files
-*.csv
-data/
-
-# OS
+# Editor and OS
+.vscode/
+.idea/
 .DS_Store
 Thumbs.db
+
+# Local logs
+*.log
